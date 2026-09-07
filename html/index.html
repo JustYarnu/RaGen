@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A simple, interactive radar chart generator.">
+	<title>RaGen</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+	<script src="../js/radar_chart_generation.js" defer></script>
+</head>
+<body>
+	<header class="site-header">
+		<a class="brand" href="./" aria-label="RaGen home"><span class="brand-mark">R</span><span>RaGen</span></a>
+    	</header>
+	<main class="app-shell">
+		<section class="workspace" aria-label="Radar chart builder">
+			<aside class="control-panel">
+				<div class="panel-heading"><div><p class="section-label">Data</p><h2>Chart input</h2></div><span class="dimension-count" id="dimension-count">6 axes</span></div>
+				<label class="field-label" for="chart-title">Chart title</label>
+				<input id="chart-title" class="text-input" type="text" value="Hexagon" maxlength="50">
+				<div class="preset-row"><label class="field-label" for="preset-select">Choose a shape</label><select id="preset-select" class="select-input"><option value="custom">Custom shape</option><option value="triangle">Triangle</option><option value="square">Square</option><option value="pentagon">Pentagon</option><option value="hexagon" selected>Hexagon</option><option value="heptagon">Heptagon</option><option value="octagon">Octagon</option></select></div>
+				<div class="dimension-list" id="dimension-list" aria-live="polite"></div>
+				<div class="panel-actions"><button class="button button-secondary" id="add-dimension" type="button"><span aria-hidden="true">+</span> Add axis</button><button class="button button-ghost" id="reset-input" type="button">Reset</button></div>
+			</aside>
+			<section class="chart-panel">
+				<div class="chart-toolbar"><div><p class="section-label">Preview</p><h2 id="preview-title">Hexagon</h2></div><div class="export-actions"><button class="button button-export" id="export-chart" type="button" title="Download chart as PNG"><span aria-hidden="true">&#8595;</span> Export PNG</button><button class="button button-export" id="export-gif" type="button" title="Download animated chart as GIF"><span aria-hidden="true">&#8595;</span> Export GIF</button></div></div>
+				<div class="chart-wrap"><canvas id="radar-chart" aria-label="Radar chart preview"></canvas></div>
+				<div class="chart-footer"><span><i class="legend-dot"></i>Score</span><span class="scale-note" id="scale-note">Scale: 0 to 10</span></div>
+			</section>
+			<div class="customization-section">
+				<div class="section-heading"><p class="section-label">Appearance</p><h2>Customize</h2></div>
+				<div class="option-grid">
+					<div><label class="field-label" for="scale-max">Scale max</label><input id="scale-max" class="text-input" type="number" min="1" max="1000" step="1" inputmode="numeric" pattern="[0-9]*" value="10"></div>
+					<div><label class="field-label" for="accent-preset">Chart color</label><div class="color-controls"><select id="accent-preset" class="select-input"><option value="coral">Coral</option><option value="mint">Mint</option><option value="ocean">Ocean</option><option value="plum">Plum</option><option value="gold">Gold</option><option value="custom">Custom</option></select><input id="accent-color" class="color-input" type="color" value="#f27e63" aria-label="Custom chart color"></div></div>
+				</div>
+				<div class="option-grid">
+					<div><label class="field-label" for="line-style">Line style</label><select id="line-style" class="select-input"><option value="solid">Solid</option><option value="dashed">Dashed</option></select></div>
+					<div><label class="field-label" for="fill-opacity">Fill <span id="fill-opacity-value">20%</span></label><input id="fill-opacity" class="range-input" type="range" min="0" max="60" step="5" value="20"></div>
+				</div>
+				<div class="export-options">
+					<p class="field-label">Background</p>
+					<div class="background-controls"><select id="export-background" class="select-input"><option value="transparent">Transparent</option><option value="white">White</option><option value="mint">Mint</option><option value="blush">Blush</option><option value="charcoal">Charcoal</option><option value="custom">Custom</option></select><input id="export-bg-color" class="color-input" type="color" value="#ffffff" aria-label="Custom background color"></div>
+					<label class="field-label" for="background-opacity">Background fill <span id="background-opacity-value">100%</span></label>
+					<input id="background-opacity" class="range-input" type="range" min="0" max="100" step="5" value="100">
+				</div>
+				<div class="panel-actions"><button class="button button-ghost" id="reset-appearance" type="button">Reset appearance</button></div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

@@ -1,3 +1,3 @@
 # RaGen
-Simple yet effective radar chart generation
-hello
+
+Simple radar chart generation for GitHub Pages.
